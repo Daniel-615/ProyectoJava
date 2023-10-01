@@ -32,7 +32,7 @@ public class Clientes {
                                     );""";
             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(createTableSQL);
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Tabla Clientes creada correctamente");
+            System.out.println("Tabla creada correctamente");
            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
             }

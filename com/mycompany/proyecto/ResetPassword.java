@@ -19,6 +19,7 @@ public class ResetPassword extends javax.swing.JFrame {
         
     }
     public ResetPassword(String usuario){
+        initComponents();
         this.usuario=usuario;
     }
 
@@ -114,7 +115,7 @@ public class ResetPassword extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

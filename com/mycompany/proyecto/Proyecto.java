@@ -18,15 +18,18 @@ public class Proyecto {
         objC.createTable();
         Empleados objE=new Empleados();
         objE.createTable();
-        
+        Productos objp=new Productos();
+        objp.createTable();
         
         //Procedures
         Usuarios objP=new Usuarios();
         objP.createProcedure();
         objP.updatePassword();
         objP.procedure_deleteUser();
+        objP.createProcedureLogin();
         //Forms
-        Signin objetoVista=new Signin();
-        objetoVista.setVisible(true);
+        
+        WelcomeForm obj=new WelcomeForm();
+        obj.setVisible(true);  
     }
 }

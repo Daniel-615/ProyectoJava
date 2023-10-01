@@ -38,7 +38,6 @@ public class Signin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         disable = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         labelForgetPassword = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -88,7 +87,7 @@ public class Signin extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/vr.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/vr.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(199, 226, 255));
@@ -96,20 +95,11 @@ public class Signin extends javax.swing.JFrame {
 
         disable.setForeground(new java.awt.Color(255, 255, 255));
         disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ojos-cruzados.png"))); // NOI18N
+        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/ojos-cruzados.png"))); // NOI18N
         disable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         disable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 disableMouseClicked(evt);
-            }
-        });
-
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(199, 226, 255));
-        jCheckBox1.setText("Remember Password");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
             }
         });
 
@@ -128,6 +118,11 @@ public class Signin extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(25, 118, 221));
         jButton1.setText("Submit");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(199, 226, 255));
@@ -155,7 +150,7 @@ public class Signin extends javax.swing.JFrame {
 
         show.setForeground(new java.awt.Color(255, 255, 255));
         show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/ojo.png"))); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/ojo.png"))); // NOI18N
         show.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         show.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -185,19 +180,16 @@ public class Signin extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBox1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelForgetPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelForgetPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
                                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,22 +224,20 @@ public class Signin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(disable, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(labelForgetPassword))
+                .addGap(28, 28, 28)
+                .addComponent(labelForgetPassword)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/background.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -292,10 +282,6 @@ public class Signin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     private void disableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disableMouseClicked
         txtPassword.setEchoChar((char)0);
         disable.setVisible(false);
@@ -321,6 +307,11 @@ public class Signin extends javax.swing.JFrame {
         ForgetPassword objetoVista=new ForgetPassword();
         objetoVista.setVisible(true);
     }//GEN-LAST:event_labelForgetPasswordMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Usuarios obj=new Usuarios();
+        obj.Login(txtUsername, txtPassword);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +352,6 @@ public class Signin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel disable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

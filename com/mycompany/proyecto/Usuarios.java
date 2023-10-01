@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import com.mycompany.proyecto.welcome.EntradaForm;  
+import java.sql.Types;
+ 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -52,7 +54,7 @@ public class Usuarios {
 
 
     public void createTable() {
-    Connection connection = null; // Declarar la conexión fuera del try para poder cerrarla en el bloque finally
+    Connection connection = null; 
 
     try {
         String createTableSQL = """
@@ -70,7 +72,7 @@ public class Usuarios {
 
         try (CallableStatement cs = connection.prepareCall(createTableSQL)) {
             cs.execute();
-            JOptionPane.showMessageDialog(null, "User table has been created successfully");
+            System.out.println("Tabla creada correctamente");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
         }
@@ -89,21 +91,19 @@ public class Usuarios {
 }
 
     public void createProcedure(){
-        Connection connection = null; // Declarar la conexión fuera del try para poder cerrarla en el bloque finally
-
+        Connection connection = null;
         try {
             DBConnection objetoConexion = new DBConnection();
             String insert = """
                       CREATE OR REPLACE PROCEDURE INSERT_USER(
                         IN username VARCHAR(100),
-                      	IN contrasena_usuario VARCHAR(100),
-                        IN status_usuario BOOLEAN
+                      	IN contrasena_usuario VARCHAR(100)
                           )
                       LANGUAGE plpgsql
                       AS $$
                        	BEGIN 
                           INSERT INTO USUARIO (USUARIO,CONTRASENA,FECHA_INGRESO,FECHA_ULTIMA_MODIFICACION,STATUS)
-                          VALUES (username,contrasena_usuario,NOW(),NOW(),1);
+                          VALUES (username,contrasena_usuario,NOW(),NOW(),TRUE);
                           END;
                       $$;
                       """;
@@ -129,27 +129,123 @@ public class Usuarios {
         }
     }
     public void createUser(JTextField paramUsername,JTextField paramPassword){
+        Connection connection = null;
         setUsername(paramUsername.getText());
         setPassword(paramPassword.getText());
         DBConnection objetoConexion= new DBConnection();
+        connection = objetoConexion.establecerConexion(); 
         try{
              String call="CALL INSERT_USER(?,?);";
-             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(call);
+             CallableStatement cs=connection.prepareCall(call);
              cs.setString(1, getUsername());
              cs.setString(2,getPassword());
              cs.execute();
+             System.out.println(getUsername());
+             System.out.println(getPassword());
              JOptionPane.showMessageDialog(null, "has been inserted sucessfully ");
+             EntradaForm obj=new EntradaForm();
+             obj.setVisible(true);
+             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
         }
     }
+    public void createProcedureLogin(){
+        Connection connection = null;
+        try {
+            DBConnection objetoConexion = new DBConnection();
+            String insert = """
+                            CREATE OR REPLACE FUNCTION ACCESO_USUARIO(
+                                IN p_username VARCHAR(100),
+                                IN p_contrasena VARCHAR(100)
+                            )
+                            RETURNS BOOLEAN
+                            LANGUAGE plpgsql
+                            AS $$
+                            DECLARE
+                                v_count INTEGER;
+                            BEGIN
+                                -- Verificar si el nombre de usuario y la contraseña coinciden en la base de datos
+                                SELECT COUNT(*)
+                                INTO v_count
+                                FROM USUARIO
+                                WHERE USUARIO = p_username
+                                  AND CONTRASENA = p_contrasena;
+
+                                -- Si se encontró una coincidencia, devolver verdadero (true), de lo contrario, devolver falso (false)
+                                IF v_count > 0 THEN
+                                    RETURN TRUE;
+                                ELSE
+                                    RETURN FALSE;
+                                END IF;
+                            END;
+                            $$;
+                      """;
+
+            connection = objetoConexion.establecerConexion(); 
+
+        try (CallableStatement cs = connection.prepareCall(insert)) {
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
+        }
+    }
+   public void Login(JTextField Username, JTextField Password) {
+    Connection connection = null;
+    setUsername(Username.getText());
+    setPassword(Password.getText());
+    DBConnection objetoConexion = new DBConnection();
+    connection = objetoConexion.establecerConexion();
+    try {
+        String query = "SELECT ACCESO_USUARIO(?, ?)";
+        try (CallableStatement cs = connection.prepareCall(query)) {
+            cs.setString(1, getUsername());
+            cs.setString(2, getPassword());
+
+            try (ResultSet rs = cs.executeQuery()) {
+                if (rs.next() && rs.getBoolean(1)) {
+                    JOptionPane.showMessageDialog(null, "Acceso exitoso");
+                    EntradaForm entradaForm = new EntradaForm();
+                    entradaForm.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Acceso denegado");
+                }
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error en la base de datos: " + e.getMessage());
+    }
+}
+
     public void findUser(JTextField paramUsername){
+        Connection connection = null;
         setUsername(paramUsername.getText());
         DBConnection objetoConexion= new DBConnection();
+        connection = objetoConexion.establecerConexion();
         try{
-             String find="SELECT usuario from usuario where id_usuario=? AND status=1;";
-             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(find);
+             String find="SELECT usuario from usuario where usuario=? AND status=TRUE;";
+             CallableStatement cs=connection.prepareCall(find);
              cs.setString(1, getUsername());
              ResultSet rs=cs.executeQuery();
              if(rs.next()){
@@ -166,10 +262,20 @@ public class Usuarios {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             ForgetPassword obj=new ForgetPassword();
             obj.setVisible(true); 
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
         }
     }
     public void updatePassword(){
+        Connection connection = null;
         DBConnection objetoConexion= new DBConnection(); 
+        connection = objetoConexion.establecerConexion();
         String insert="""
                       CREATE OR REPLACE PROCEDURE UPDATE_PASSWORD(
                       IN username VARCHAR(100),	
@@ -185,42 +291,65 @@ public class Usuarios {
                       $$;
                       """;
         try{
-             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(insert);
+             CallableStatement cs=connection.prepareCall(insert);
              cs.execute();
              JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            
-        }
-    }
-    public void resetPassword(String username,JTextField paramPassword,JTextField paramConfirmPassword){
-        setPassword(paramPassword.getText());
-        setConfirm_password(paramConfirmPassword.getText());
-        setUsername(username);
-        if(getPassword().equals(getConfirm_password())){
-            DBConnection objetoConexion= new DBConnection();
-            try{
-                String call="CALL UPDATE_PASSWORD(?,?);";
-                CallableStatement cs=objetoConexion.establecerConexion().prepareCall(call);
-                cs.setString(1,getUsername());
-                cs.setString(2,getPassword());
-                cs.execute();
-                JOptionPane.showMessageDialog(null, "Password has been changed successfully"); 
-                Signin obj=new Signin();
-                obj.setVisible(true);
-            }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            ResetPassword obj=new ResetPassword();
-            obj.setVisible(true);
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Error: " + "Password do not match");
-            ResetPassword obj=new ResetPassword();
-            obj.setVisible(true);
         }
     }
+    public void resetPassword(String username, JTextField paramPassword, JTextField paramConfirmPassword) {
+        Connection connection = null;
+        try {
+            setPassword(paramPassword.getText());
+            setConfirm_password(paramConfirmPassword.getText());
+            setUsername(username);
+        
+        if (getPassword().equals(getConfirm_password())) {
+            DBConnection objetoConexion = new DBConnection();
+            connection = objetoConexion.establecerConexion();
+            
+            String call = "CALL UPDATE_PASSWORD(?, ?);";
+            CallableStatement cs = connection.prepareCall(call);
+            cs.setString(1, getUsername());
+            cs.setString(2, getPassword());
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null, "Password has been changed successfully");
+            Signin obj = new Signin();
+            obj.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: Passwords do not match");
+            ResetPassword obj = new ResetPassword();
+            obj.setVisible(true);
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            ResetPassword obj = new ResetPassword();
+            obj.setVisible(true);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
+        }
+    }
+
     public void procedure_deleteUser(){
+        Connection connection = null;
         DBConnection objetoConexion= new DBConnection(); 
+        connection = objetoConexion.establecerConexion();
         String insert="""
                       CREATE OR REPLACE PROCEDURE DELETE_USER(
                       	IN username VARCHAR(100)
@@ -229,34 +358,52 @@ public class Usuarios {
                       AS $$
                        	BEGIN 
                           UPDATE USUARIO
-                            SET STATUS=0,
+                            SET STATUS=FALSE,
                                 FECHA_ULTIMA_MODIFICACION=NOW()
                             WHERE USUARIO=username;
                           END;
                       $$;
                       """;
         try{
-             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(insert);
+             CallableStatement cs=connection.prepareCall(insert);
              cs.execute();
              JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
         }
     }
     
     public void deleteUser(JTextField User){
+        Connection connection = null;
         setUsername(User.getText());
         DBConnection objetoConexion= new DBConnection(); 
+        connection = objetoConexion.establecerConexion();
         String call="CALL DELETE_USER(?)";
         try{
-             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(call);
+             CallableStatement cs=connection.prepareCall(call);
              cs.setString(1,getUsername());
              cs.execute();
              JOptionPane.showMessageDialog(null, "Procedure has been called successfully");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             
+        }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
         }
     }    
 }
