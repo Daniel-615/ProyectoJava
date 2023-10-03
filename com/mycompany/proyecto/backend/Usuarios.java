@@ -1,12 +1,16 @@
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.backend;
 
+import com.mycompany.proyecto.frontend.ForgetPassword;
+import com.mycompany.proyecto.frontend.ResetPassword;
+import com.mycompany.proyecto.frontend.Signin;
+import com.mycompany.proyecto.backend.DBConnection;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import com.mycompany.proyecto.welcome.EntradaForm;  
+import com.mycompany.proyecto.frontend.welcome.EntradaForm;  
 import java.sql.Types;
  
 /*
@@ -112,7 +116,7 @@ public class Usuarios {
 
         try (CallableStatement cs = connection.prepareCall(insert)) {
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
+            System.out.println("Procedure has been created successfully");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
@@ -195,7 +199,7 @@ public class Usuarios {
 
         try (CallableStatement cs = connection.prepareCall(insert)) {
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
+             System.out.println("Procedure has been created successfully");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
@@ -225,7 +229,6 @@ public class Usuarios {
 
             try (ResultSet rs = cs.executeQuery()) {
                 if (rs.next() && rs.getBoolean(1)) {
-                    JOptionPane.showMessageDialog(null, "Acceso exitoso");
                     EntradaForm entradaForm = new EntradaForm();
                     entradaForm.setVisible(true);
                 } else {
@@ -293,7 +296,7 @@ public class Usuarios {
         try{
              CallableStatement cs=connection.prepareCall(insert);
              cs.execute();
-             JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
+              System.out.println("Procedure has been created successfully");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }finally {
@@ -367,7 +370,7 @@ public class Usuarios {
         try{
              CallableStatement cs=connection.prepareCall(insert);
              cs.execute();
-             JOptionPane.showMessageDialog(null, "Procedure has been created successfully");
+             System.out.println("Procedure has been created successfully");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             

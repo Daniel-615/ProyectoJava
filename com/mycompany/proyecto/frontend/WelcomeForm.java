@@ -1,4 +1,5 @@
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.frontend;
+import com.mycompany.proyecto.frontend.Signin;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,21 +17,21 @@ public class WelcomeForm extends JFrame {
         setTitle("Welcome Form");
         setSize(600, 400);
         setLocationRelativeTo(null);
-        setUndecorated(true); // Para eliminar la barra de título
+        setUndecorated(true); 
 
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Dibuja una imagen de fondo
-                ImageIcon image = new ImageIcon("src\\main\\java\\com\\mycompany\\proyecto\\icon\\background.jpg"); // Reemplaza con la ubicación de tu imagen
+                ImageIcon image = new ImageIcon("src\\main\\java\\com\\mycompany\\proyecto\\frontend\\icon\\background.jpg"); 
                 g.drawImage(image.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
         };
 
         getContentPane().add(panel);
 
-        // Crear un botón "Iniciar" en la parte inferior del formulario
+ 
         JButton btnStart = new JButton("Iniciar");
         btnStart.setFont(new Font("Arial", Font.BOLD, 18));
         btnStart.setForeground(Color.WHITE);
@@ -41,7 +42,7 @@ public class WelcomeForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Signin obj=new Signin();
                 obj.setVisible(true);
-                dispose(); // Cierra el formulario de bienvenida
+                dispose(); 
             }
         });
 

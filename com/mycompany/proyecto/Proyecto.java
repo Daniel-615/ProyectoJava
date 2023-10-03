@@ -4,6 +4,12 @@
 
 package com.mycompany.proyecto;
 
+import com.mycompany.proyecto.frontend.WelcomeForm;
+import com.mycompany.proyecto.backend.Usuarios;
+import com.mycompany.proyecto.backend.Productos;
+import com.mycompany.proyecto.backend.Empleados;
+import com.mycompany.proyecto.backend.Clientes;
+
 /**
  *
  * @author suyan

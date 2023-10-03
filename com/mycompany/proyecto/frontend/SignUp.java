@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.frontend;
+
+import com.mycompany.proyecto.backend.Usuarios;
 
 /**
  *
@@ -87,7 +89,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/vr.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/vr.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(199, 226, 255));
@@ -95,7 +97,7 @@ public class SignUp extends javax.swing.JFrame {
 
         disable.setForeground(new java.awt.Color(255, 255, 255));
         disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/ojos-cruzados.png"))); // NOI18N
+        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/ojos-cruzados.png"))); // NOI18N
         disable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         disable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,7 +150,7 @@ public class SignUp extends javax.swing.JFrame {
 
         show.setForeground(new java.awt.Color(255, 255, 255));
         show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/ojo.png"))); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/ojo.png"))); // NOI18N
         show.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         show.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,7 +240,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/icon/background.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

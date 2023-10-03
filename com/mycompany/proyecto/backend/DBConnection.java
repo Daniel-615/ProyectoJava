@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.proyecto;
+package com.mycompany.proyecto.backend;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class DBConnection {
     public Connection establecerConexion() {
         try {
             Properties propiedades = new Properties();
-            String rutaArchivo = "src\\main\\java\\com\\mycompany\\proyecto\\config.properties";
+            String rutaArchivo = "src\\main\\java\\com\\mycompany\\proyecto\\backend\\config.properties";
 
             try (FileInputStream fis = new FileInputStream(rutaArchivo)) {
                 propiedades.load(fis);
@@ -33,12 +33,12 @@ public class DBConnection {
 
                 Class.forName("org.postgresql.Driver");
                 cn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-                JOptionPane.showMessageDialog(null, "Conexión establecida");
+                System.out.println("Conexión establecida");
             } catch (IOException | ClassNotFoundException | SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
+                System.out.println("Error de Conexión: "+e.getMessage());
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
+             System.out.println("Error de Conexión: "+e.getMessage());
         }
         return cn;
     }
