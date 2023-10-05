@@ -54,7 +54,7 @@ public class Signin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jPanel1.setBackground(new java.awt.Color(25, 118, 211));
