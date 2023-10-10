@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto.frontend;
 
+import com.mycompany.proyecto.backend.Factura;
 import com.mycompany.proyecto.frontend.SignUp;
 import com.mycompany.proyecto.frontend.ForgetPassword;
 import com.mycompany.proyecto.backend.Usuarios;
@@ -314,8 +315,10 @@ public class Signin extends javax.swing.JFrame {
     }//GEN-LAST:event_labelForgetPasswordMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         Usuarios obj=new Usuarios();
         obj.Login(txtUsername, txtPassword);
+        Factura.generarFactura();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
