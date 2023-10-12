@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.io.FileInputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -19,7 +21,15 @@ import javax.swing.JTextField;
  */
 public class Productos {
     String nombre,descripcion;
-    int stock,stock_min;
+    int stock,stock_min,id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     float precio_unitario;
     //obtener los bytes de la imagen
     private int longitudBytes;
@@ -192,4 +202,51 @@ public class Productos {
         productoView.setNombreText("");
         productoView.setFotoText("Foto");
     }
+    //Tabla
+    public void mostrarProductos(){
+        
+    };
+    //ProductoConsulta
+    public void mostrarProducto(JTextField id,ProductoView productoView) {
+    Connection connection = null;
+    DBConnection objetoConexion = new DBConnection();
+
+    try {
+        String consulta = "SELECT nombre, descripcion, stock, stock_minimo, precio_unitario, imagen FROM producto WHERE id_producto = ?";
+        connection = objetoConexion.establecerConexion();
+        setId(Integer.parseInt(id.getText()));
+        try (PreparedStatement preparedStatement = connection.prepareStatement(consulta)) {
+            preparedStatement.setInt(1,getId());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    setNombre(resultSet.getString("nombre"));
+                    setDescripcion(resultSet.getString("descripcion"));
+                    setStock(resultSet.getInt("stock"));
+                    setStock_min(resultSet.getInt("stock_minimo"));
+                    setPrecio_unitario(resultSet.getFloat("precio_unitario"));
+                    //falta imagen
+                    
+                    productoView.setNombreText(getNombre());
+                    productoView.setDescripcionText(getDescripcion());
+                    productoView.setStockText(String.valueOf(getStock()));
+                    productoView.setStockMinText(String.valueOf(getStock_min()));
+                    productoView.setPrecioText(String.valueOf(getPrecio_unitario()));
+                } else {
+                    JOptionPane.showMessageDialog(null, "El producto con ID " + id + " no se encontró.");
+                }
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al recuperar el producto: " + e.getMessage());
+    } finally {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+            }
+        }
+    }
+}
+
 }
