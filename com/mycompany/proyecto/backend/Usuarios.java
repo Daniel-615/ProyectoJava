@@ -3,7 +3,6 @@ package com.mycompany.proyecto.backend;
 import com.mycompany.proyecto.frontend.ForgetPassword;
 import com.mycompany.proyecto.frontend.ResetPassword;
 import com.mycompany.proyecto.frontend.Signin;
-import com.mycompany.proyecto.backend.DBConnection;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +10,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import com.mycompany.proyecto.frontend.welcome.EntradaForm;  
-import java.sql.Types;
  
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

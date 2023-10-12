@@ -9,7 +9,7 @@ import com.mycompany.proyecto.backend.Usuarios;
 import com.mycompany.proyecto.backend.Productos;
 import com.mycompany.proyecto.backend.Empleados;
 import com.mycompany.proyecto.backend.Clientes;
- 
+
 
 /**
  *
@@ -34,8 +34,9 @@ public class Proyecto {
         objP.updatePassword();
         objP.procedure_deleteUser();
         objP.createProcedureLogin();
+        Productos obP=new Productos();
+        obP.createProcedureProducto();
         //Forms
-        
         WelcomeForm obj=new WelcomeForm();
         obj.setVisible(true);  
     }

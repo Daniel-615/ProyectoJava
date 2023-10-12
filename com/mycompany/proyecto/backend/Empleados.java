@@ -4,10 +4,14 @@
  */
 package com.mycompany.proyecto.backend;
 
-import com.mycompany.proyecto.backend.DBConnection;
+import com.mycompany.proyecto.frontend.ForgetPassword;
+import com.mycompany.proyecto.frontend.ResetPassword;
 import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,7 +30,9 @@ public class Empleados {
                                         segundo_apellido VARCHAR(100),
                                         nit VARCHAR(10),
                                         salario DECIMAL(10, 2),
-                                        status BOOLEAN
+                                        status BOOLEAN,
+                                        usuario_id INT UNIQUE,  
+                                        FOREIGN KEY (usuario_id) REFERENCES usuario(id_usuario)
                                     );""";
             CallableStatement cs=objetoConexion.establecerConexion().prepareCall(createTableSQL);
             cs.execute();
@@ -35,4 +41,11 @@ public class Empleados {
                 JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
             }
     }
+   
+    public void insertEmpleado(){
+        
+    };
+    public void updateEmpleado(){
+        
+    };
 }
