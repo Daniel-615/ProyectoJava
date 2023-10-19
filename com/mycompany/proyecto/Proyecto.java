@@ -4,12 +4,12 @@
 
 package com.mycompany.proyecto;
 
-import com.mycompany.proyecto.frontend.WelcomeForm;
+
 import com.mycompany.proyecto.backend.Usuarios;
 import com.mycompany.proyecto.backend.Productos;
 import com.mycompany.proyecto.backend.Empleados;
 import com.mycompany.proyecto.backend.Clientes;
-
+import com.mycompany.proyecto.frontend.Signin;
 
 /**
  *
@@ -34,10 +34,11 @@ public class Proyecto {
         objP.updatePassword();
         objP.procedure_deleteUser();
         objP.createProcedureLogin();
+        objP.createProcedureShow();
         Productos obP=new Productos();
         obP.createProcedureProducto();
         //Forms
-        WelcomeForm obj=new WelcomeForm();
+        Signin obj=new Signin();
         obj.setVisible(true);  
     }
 }

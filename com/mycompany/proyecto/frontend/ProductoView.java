@@ -54,6 +54,10 @@ public class ProductoView extends javax.swing.JFrame {
     public void setFotoText(String text){
         jlabel_foto.setText(text);
     }
+        public void setImagenProducto(ImageIcon imagen) {
+    jlabel_foto.setIcon(imagen);
+}
+
     
     //background
     public void setTxtNombreBackgroundColor(Color color) {
@@ -238,7 +242,7 @@ public class ProductoView extends javax.swing.JFrame {
                         .addComponent(jLabel6)))
                 .addContainerGap(175, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(27, 27, 27)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -263,7 +267,7 @@ public class ProductoView extends javax.swing.JFrame {
                                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(93, 93, 93))))
@@ -306,7 +310,7 @@ public class ProductoView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addGap(52, 52, 52)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jMenu2.setText("Inicio");
@@ -368,7 +372,9 @@ public class ProductoView extends javax.swing.JFrame {
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -384,7 +390,7 @@ public class ProductoView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -419,6 +425,8 @@ public class ProductoView extends javax.swing.JFrame {
                 fS = new FileInputStream (se.getSelectedFile());
                 this.longitudBytes=(int) se.getSelectedFile().length();
                 Productos miProducto=new Productos(longitudBytes,fS);
+                System.out.println(longitudBytes);
+                System.out.println(fS);
                 Image icono=ImageIO.read(se.getSelectedFile()).getScaledInstance(jlabel_foto.getWidth(),jlabel_foto.getHeight(),Image.SCALE_DEFAULT);
                 jlabel_foto.setIcon(new ImageIcon(icono));
                 jlabel_foto.updateUI();

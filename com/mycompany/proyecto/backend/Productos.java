@@ -12,8 +12,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,25 +26,36 @@ import javax.swing.JTextField;
 public class Productos {
     String nombre,descripcion;
     int stock,stock_min,id;
-
+    double precio_unitario;
     public int getId() {
         return id;
+    }
+
+    public double getPrecio_unitario() {
+        return precio_unitario;
+    }
+
+    public void setPrecio_unitario(double precio_unitario) {
+        this.precio_unitario = precio_unitario;
     }
 
     public void setId(int id) {
         this.id = id;
     }
-    float precio_unitario;
+    
     //obtener los bytes de la imagen
-    private int longitudBytes;
-    private FileInputStream fS;
+    public int longitudBytes;
+    public FileInputStream fS;
     // Constructor que acepta la longitud de bytes como argumento
     public Productos(int longitudBytes,FileInputStream fS) {
         this.longitudBytes = longitudBytes;
         this.fS = fS;
     }
+    //Constructor vacio 
     public Productos(){  
     };
+    
+    //metodos
     public int getBytes(){
         return longitudBytes;
     }
@@ -78,15 +93,6 @@ public class Productos {
     public void setStock_min(int stock_min) {
         this.stock_min = stock_min;
     }
-
-    public float getPrecio_unitario() {
-        return precio_unitario;
-    }
-
-    public void setPrecio_unitario(float precio_unitario) {
-        this.precio_unitario = precio_unitario;
-    }
-    
     
     public void createTable() {
         try {
@@ -113,13 +119,13 @@ public class Productos {
         try {
             DBConnection objetoConexion = new DBConnection();
             String insert = """
-                            CREATE OR REPLACE FUNCTION insertar_producto(
+                            CREATE OR REPLACE FUNCTION insert_producto(
                                 p_nombre varchar(30),
                                 p_descripcion VARCHAR(100),
                                 p_stock INTEGER,
                                 p_stock_minimo INTEGER,
                                 p_precio_unitario DECIMAL(10, 2),
-                                p_imagen BYTEA
+                                p_imagen bytea
                             ) RETURNS void AS
                             $$
                             BEGIN
@@ -134,7 +140,7 @@ public class Productos {
 
         try (CallableStatement cs = connection.prepareCall(insert)) {
             cs.execute();
-             System.out.println("Procedure has been created successfully");
+                System.out.println("Procedure has been created successfully");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
@@ -151,63 +157,119 @@ public class Productos {
         }
     }
     public void createProducto(JTextField paramNombre, JTextField paramDescripcion, JTextField paramStock, JTextField paramStock_min, JTextField paramPrecio, ProductoView productoView) {
-        Connection connection = null;
-        if (paramNombre.getText().equals("")) {
-            productoView.setTxtNombreBackgroundColor(Color.RED);
-            productoView.setTxtDescripcionBackgroundColor(Color.RED);
-            productoView.setTxtStockBackgroundColor(Color.RED);
-            productoView.setTxtStock_minBackgroundColor(Color.RED);
-            productoView.setTxtPrecioBackgroundColor(Color.RED);
-            JOptionPane.showMessageDialog(null,"Debes llenar todos los campos");
-        } else {
-            setNombre(paramNombre.getText().trim());
-            setDescripcion(paramDescripcion.getText().trim());
-            setStock(Integer.parseInt(paramStock.getText().trim()));
-            setStock_min(Integer.parseInt(paramStock_min.getText().trim()));
-            setPrecio_unitario(Float.parseFloat(paramPrecio.getText().trim()));
-            DBConnection objetoConexion = new DBConnection();
-            try{
-                String insert="CALL insertar_producto(?, ?, ?, ?, ?, ?)";
-                connection = objetoConexion.establecerConexion();
-                try(CallableStatement cs = connection.prepareCall(insert)){
-                    cs.setString(1, getNombre());
-                    cs.setString(2, getDescripcion());
-                    cs.setInt(3,getStock());
-                    cs.setInt(4,getStock_min());
-                    cs.setFloat(5,getPrecio_unitario());
-                    cs.setBlob(6,getFS(),getBytes());
-                    cs.execute();
-                    limpiar(productoView);
-                    productoView.setTxtNombreBackgroundColor(Color.green);
-                    productoView.setTxtDescripcionBackgroundColor(Color.green);
-                    productoView.setTxtStockBackgroundColor(Color.green);
-                    productoView.setTxtStock_minBackgroundColor(Color.green);
-                    productoView.setTxtPrecioBackgroundColor(Color.green);
-                    System.out.println("Product has been created successfully");
+    Connection connection = null;
+
+    if (paramNombre.getText().isEmpty()) {
+        productoView.setTxtNombreBackgroundColor(Color.RED);
+        productoView.setTxtDescripcionBackgroundColor(Color.RED);
+        productoView.setTxtStockBackgroundColor(Color.RED);
+        productoView.setTxtStock_minBackgroundColor(Color.RED);
+        productoView.setTxtPrecioBackgroundColor(Color.RED);
+        JOptionPane.showMessageDialog(null, "Debes llenar todos los campos");
+    } else {
+        setNombre(paramNombre.getText().trim());
+        setDescripcion(paramDescripcion.getText().trim());
+        setStock(Integer.parseInt(paramStock.getText().trim()));
+        setStock_min(Integer.parseInt(paramStock_min.getText().trim()));
+        setPrecio_unitario(Float.parseFloat(paramPrecio.getText().trim()));
+
+        DBConnection objetoConexion = new DBConnection();
+        try {
+            String insert = "SELECT public.insert_producto(?, ?, ?, ?, ?, ?)";
+            connection = objetoConexion.establecerConexion();
+            try (CallableStatement cs = connection.prepareCall(insert)) {
+                cs.setString(1, getNombre());
+                cs.setString(2, getDescripcion());
+                cs.setInt(3, getStock());
+                cs.setInt(4, getStock_min());
+                cs.setDouble(5, getPrecio_unitario());
+
+                // Pasa la imagen (FileInputStream) a la función como un parámetro
+                cs.setBinaryStream(6, getFS(), getBytes());
+
+                cs.execute();
+                limpiar(productoView);
+                productoView.setTxtNombreBackgroundColor(Color.green);
+                productoView.setTxtDescripcionBackgroundColor(Color.green);
+                productoView.setTxtStockBackgroundColor(Color.green);
+                productoView.setTxtStock_minBackgroundColor(Color.green);
+                productoView.setTxtPrecioBackgroundColor(Color.green);
+                System.out.println("Producto creado exitosamente");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al guardar: " + e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
                 }
-            }catch(SQLException e){
-                System.out.println("Error saving: "+e.getMessage());
-            }finally {
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
-                    }
-                }
-            }   
+            }
         }
     }
+}
+
     public void limpiar(ProductoView productoView){
         productoView.setNombreText("");
         productoView.setFotoText("Foto");
     }
     //Tabla
-    public void mostrarProductos(){
+    public void mostrarProductos(JTable TablaTotalProductos) {
+    DBConnection objetoConexion = new DBConnection();
+    DefaultTableModel modelo = new DefaultTableModel();
+    String sql = "SELECT * FROM producto;";
+    modelo.addColumn("nombre");
+    modelo.addColumn("descripcion");
+    modelo.addColumn("stock");
+    modelo.addColumn("stock_minimo");
+    modelo.addColumn("precio_unitario");
+    modelo.addColumn("imagen");
+    TablaTotalProductos.setModel(modelo);
+    
+    Statement stmt = null;
+    Connection connection = null;
+
+    try {
+        connection = objetoConexion.establecerConexion();
+        stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
         
-    };
+        while (rs.next()) {
+            setNombre( rs.getString("nombre"));
+            setDescripcion(rs.getString("descripcion"));
+            setStock(rs.getInt("stock"));
+            setStock_min(rs.getInt("stock_minimo"));
+            setPrecio_unitario(rs.getDouble("precio_unitario"));
+            byte[] imagenBytes = rs.getBytes("imagen");
+            
+            // Crea un nuevo array de objetos para representar una fila de datos
+            Object[] datos = { getNombre(), getDescripcion(), getStock(), getStock_min(), getPrecio_unitario(), imagenBytes };
+            modelo.addRow(datos);
+        }
+        TablaTotalProductos.setModel(modelo);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    } finally {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                // Manejo de errores al cerrar la declaración
+            }
+        }
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                // Manejo de errores al cerrar la conexión
+            }
+        }
+    }
+}
+
     //ProductoConsulta
-    public void mostrarProducto(JTextField id,ProductoView productoView) {
+    public void mostrarProducto(JTextField id, ProductoView productoView) {
     Connection connection = null;
     DBConnection objetoConexion = new DBConnection();
 
@@ -216,7 +278,7 @@ public class Productos {
         connection = objetoConexion.establecerConexion();
         setId(Integer.parseInt(id.getText()));
         try (PreparedStatement preparedStatement = connection.prepareStatement(consulta)) {
-            preparedStatement.setInt(1,getId());
+            preparedStatement.setInt(1, getId());
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     setNombre(resultSet.getString("nombre"));
@@ -224,13 +286,22 @@ public class Productos {
                     setStock(resultSet.getInt("stock"));
                     setStock_min(resultSet.getInt("stock_minimo"));
                     setPrecio_unitario(resultSet.getFloat("precio_unitario"));
-                    //falta imagen
-                    
+
+                    // Obtener los bytes de la imagen directamente
+                    byte[] imagenBytes = resultSet.getBytes("imagen");
+
+                    // Convierte los bytes en una imagen (puedes usar ImageIcon)
+                    ImageIcon imagen = new ImageIcon(imagenBytes);
+
                     productoView.setNombreText(getNombre());
                     productoView.setDescripcionText(getDescripcion());
                     productoView.setStockText(String.valueOf(getStock()));
                     productoView.setStockMinText(String.valueOf(getStock_min()));
                     productoView.setPrecioText(String.valueOf(getPrecio_unitario()));
+
+                    // Muestra la imagen en un JLabel de tu interfaz
+                    // Dentro de tu método mostrarProducto
+                    productoView.setImagenProducto(imagen);
                 } else {
                     JOptionPane.showMessageDialog(null, "El producto con ID " + id + " no se encontró.");
                 }
@@ -248,5 +319,7 @@ public class Productos {
         }
     }
 }
+
+
 
 }

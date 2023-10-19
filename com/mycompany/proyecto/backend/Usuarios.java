@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import com.mycompany.proyecto.frontend.welcome.EntradaForm;  
+import com.mycompany.proyecto.frontend.EntradaForm;  
  
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -92,6 +92,42 @@ public class Usuarios {
     }
 }
 
+    public void createProcedureShow(){
+        Connection connection = null;
+        try {
+            DBConnection objetoConexion = new DBConnection();
+            String insert = """
+                      CREATE OR REPLACE PROCEDURE SELECT_USER(
+                          )
+                      LANGUAGE plpgsql
+                      AS $$
+                       	BEGIN 
+                            SELECT USUARIO,CONTRASENA,FECHA_INGRESO FROM USUARIO;
+                          END;
+                      $$;
+                      """;
+
+            connection = objetoConexion.establecerConexion(); 
+
+        try (CallableStatement cs = connection.prepareCall(insert)) {
+            cs.execute();
+            System.out.println("Procedure has been created successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
+        }
+    }
+            
     public void createProcedure(){
         Connection connection = null;
         try {
@@ -130,6 +166,27 @@ public class Usuarios {
             }
         }
     }
+    
+    public void showUser(){
+       Connection connection = null; 
+       DBConnection objetoConexion= new DBConnection();
+       connection = objetoConexion.establecerConexion();
+       try{
+            String call="CALL SELECT_USER();";
+            CallableStatement cs=connection.prepareCall(call);
+       }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+       }finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
+        }
+    };
+    
     public void createUser(JTextField paramUsername,JTextField paramPassword){
         Connection connection = null;
         setUsername(paramUsername.getText());
@@ -142,8 +199,6 @@ public class Usuarios {
              cs.setString(1, getUsername());
              cs.setString(2,getPassword());
              cs.execute();
-             System.out.println(getUsername());
-             System.out.println(getPassword());
              JOptionPane.showMessageDialog(null, "has been inserted sucessfully ");
              EntradaForm obj=new EntradaForm();
              obj.setVisible(true);

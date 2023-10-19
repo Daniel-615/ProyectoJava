@@ -29,38 +29,21 @@ public class SignUp extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jLabel2 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         jLabel160 = new javax.swing.JLabel();
         jLabel161 = new javax.swing.JLabel();
         jLabel162 = new javax.swing.JLabel();
         jLabel163 = new javax.swing.JLabel();
-        jLabel164 = new javax.swing.JLabel();
         jLabel165 = new javax.swing.JLabel();
-        disable = new javax.swing.JLabel();
         btnAccount20 = new javax.swing.JButton();
         jLabel166 = new javax.swing.JLabel();
         SignIn20 = new javax.swing.JLabel();
         txtUsername20 = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        show = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        MenuInsertar = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        MenuEliminar = new javax.swing.JMenuItem();
-        MenuMostrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/background.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
 
         jPanel22.setBackground(new java.awt.Color(25, 118, 211));
         jPanel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,23 +74,9 @@ public class SignUp extends javax.swing.JFrame {
         jLabel163.setForeground(new java.awt.Color(199, 226, 255));
         jLabel163.setText("Username");
 
-        jLabel164.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel164.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel164.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/vr.png"))); // NOI18N
-
         jLabel165.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel165.setForeground(new java.awt.Color(199, 226, 255));
         jLabel165.setText("Password");
-
-        disable.setForeground(new java.awt.Color(255, 255, 255));
-        disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/ojos-cruzados.png"))); // NOI18N
-        disable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        disable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                disabledisableMouseClicked(evt);
-            }
-        });
 
         btnAccount20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAccount20.setForeground(new java.awt.Color(25, 118, 221));
@@ -135,62 +104,46 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        txtUsername20.setForeground(new java.awt.Color(255, 255, 255));
         txtUsername20.setBorder(null);
 
         txtPassword.setFont(txtPassword.getFont());
-        txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setBorder(null);
         txtPassword.setCaretColor(new java.awt.Color(255, 255, 255));
-
-        show.setForeground(new java.awt.Color(255, 255, 255));
-        show.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/frontend/icon/ojo.png"))); // NOI18N
-        show.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        show.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showshowMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername20, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel164, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(disable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(show, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1248, 1248, 1248))
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel160, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel161, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel160, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel161, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel165))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabel162, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel163, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnAccount20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel22Layout.createSequentialGroup()
+                                        .addComponent(jLabel166, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(117, 117, 117)
+                                        .addComponent(SignIn20, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel22Layout.createSequentialGroup()
-                            .addGap(48, 48, 48)
-                            .addComponent(jLabel165))
-                        .addGroup(jPanel22Layout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addComponent(jLabel162, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel22Layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(jLabel163, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel22Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(txtUsername20, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
                             .addGap(16, 16, 16)
-                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnAccount20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel22Layout.createSequentialGroup()
-                                    .addComponent(jLabel166, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(117, 117, 117)
-                                    .addComponent(SignIn20, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
@@ -205,16 +158,11 @@ public class SignUp extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel163)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUsername20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel164, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtUsername20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel165)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(disable, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(show, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAccount20, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -224,77 +172,17 @@ public class SignUp extends javax.swing.JFrame {
                 .addGap(0, 24, Short.MAX_VALUE))
         );
 
-        jMenu2.setText("Inicio");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Empleados");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Productos");
-
-        jMenuItem1.setText("Get");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
-
-        MenuInsertar.setText("Insertar");
-        MenuInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuInsertarActionPerformed(evt);
-            }
-        });
-        jMenu4.add(MenuInsertar);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Clientes");
-        jMenuBar1.add(jMenu5);
-
-        jMenu6.setText("Usuarios");
-
-        MenuEliminar.setText("Eliminar");
-        MenuEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuEliminarActionPerformed(evt);
-            }
-        });
-        jMenu6.add(MenuEliminar);
-
-        MenuMostrar.setText("Mostrar");
-        MenuMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuMostrarActionPerformed(evt);
-            }
-        });
-        jMenu6.add(MenuMostrar);
-
-        jMenuBar1.add(jMenu6);
-
-        jInternalFrame1.setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,8 +190,8 @@ public class SignUp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1)
-                .addContainerGap())
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,14 +205,6 @@ public class SignUp extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel160jLabel1MouseClicked
 
-    private void disabledisableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disabledisableMouseClicked
-        txtPassword.setEchoChar((char)0);
-        disable.setVisible(false);
-        disable.setEnabled(false);
-        show.setVisible(true);
-        show.setEnabled(true);
-    }//GEN-LAST:event_disabledisableMouseClicked
-
     private void btnAccount20btnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccount20btnAccountActionPerformed
         Usuarios user=new Usuarios();
         user.createUser(txtUsername20, txtPassword);
@@ -336,38 +216,6 @@ public class SignUp extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SignIn20SignInMouseClicked
-
-    private void showshowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showshowMouseClicked
-        txtPassword.setEchoChar((char)0226);
-        disable.setVisible(true);
-        disable.setEnabled(true);
-        show.setVisible(false);
-        show.setEnabled(false);
-    }//GEN-LAST:event_showshowMouseClicked
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ProductoTable p=new ProductoTable();
-        p.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void MenuInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInsertarActionPerformed
-        ProductoView obj=new ProductoView();
-        obj.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_MenuInsertarActionPerformed
-
-    private void MenuEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEliminarActionPerformed
-        UsuariosDelete obj=new UsuariosDelete();
-        obj.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_MenuEliminarActionPerformed
-
-    private void MenuMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMostrarActionPerformed
-        ShowUser obj=new ShowUser();
-        obj.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_MenuMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,30 +254,16 @@ public class SignUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MenuEliminar;
-    private javax.swing.JMenuItem MenuInsertar;
-    private javax.swing.JMenuItem MenuMostrar;
     private javax.swing.JLabel SignIn20;
     private javax.swing.JButton btnAccount20;
-    private javax.swing.JLabel disable;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel160;
     private javax.swing.JLabel jLabel161;
     private javax.swing.JLabel jLabel162;
     private javax.swing.JLabel jLabel163;
-    private javax.swing.JLabel jLabel164;
     private javax.swing.JLabel jLabel165;
     private javax.swing.JLabel jLabel166;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JLabel show;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername20;
     // End of variables declaration//GEN-END:variables
