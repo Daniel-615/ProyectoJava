@@ -29,9 +29,9 @@ public class EntradaForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuInsertar = new javax.swing.JMenuItem();
@@ -42,11 +42,16 @@ public class EntradaForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu2.setText("Inicio");
-        jMenuBar1.add(jMenu2);
+        jMenu9.setText("Inicio");
+        jMenuBar3.add(jMenu9);
 
-        jMenu3.setText("Empleados");
-        jMenuBar1.add(jMenu3);
+        jMenu10.setText("Empleados");
+        jMenu10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu10MouseClicked(evt);
+            }
+        });
+        jMenuBar3.add(jMenu10);
 
         jMenu4.setText("Productos");
 
@@ -66,10 +71,10 @@ public class EntradaForm extends javax.swing.JFrame {
         });
         jMenu4.add(MenuInsertar);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar3.add(jMenu4);
 
         jMenu5.setText("Clientes");
-        jMenuBar1.add(jMenu5);
+        jMenuBar3.add(jMenu5);
 
         jMenu6.setText("Usuarios");
 
@@ -89,9 +94,9 @@ public class EntradaForm extends javax.swing.JFrame {
         });
         jMenu6.add(MenuMostrar);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar3.add(jMenu6);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +111,11 @@ public class EntradaForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
+        EmpleadoView obj=new EmpleadoView();
+        obj.setVisible(true);
+    }//GEN-LAST:event_jMenu10MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ProductoTable p=new ProductoTable();
@@ -170,12 +180,18 @@ public class EntradaForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuEliminar;
     private javax.swing.JMenuItem MenuInsertar;
     private javax.swing.JMenuItem MenuMostrar;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
