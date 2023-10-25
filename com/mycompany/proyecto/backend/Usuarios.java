@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import com.mycompany.proyecto.frontend.EntradaForm;  
+import java.sql.Statement;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
  
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -102,7 +105,7 @@ public class Usuarios {
                       LANGUAGE plpgsql
                       AS $$
                        	BEGIN 
-                            SELECT USUARIO,CONTRASENA,FECHA_INGRESO FROM USUARIO;
+                            SELECT USUARIO FROM USUARIO;
                           END;
                       $$;
                       """;
@@ -167,24 +170,47 @@ public class Usuarios {
         }
     }
     
-    public void showUser(){
-       Connection connection = null; 
-       DBConnection objetoConexion= new DBConnection();
-       connection = objetoConexion.establecerConexion();
-       try{
-            String call="CALL SELECT_USER();";
-            CallableStatement cs=connection.prepareCall(call);
-       }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-       }finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.getMessage());
-                }
+    public void showUser(JTable TablaUsuarios){
+       DBConnection objetoConexion = new DBConnection();
+        DefaultTableModel modelo = new DefaultTableModel();
+        String sql = "SELECT usuario from usuario where status=TRUE;";
+        modelo.addColumn("usuario");
+        TablaUsuarios.setModel(modelo);
+    
+        Statement stmt = null;
+        Connection connection = null;
+
+        try {
+            connection = objetoConexion.establecerConexion();
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+        
+            while (rs.next()) {
+            setUsername( rs.getString("usuario"));
+                        
+            // Crea un nuevo array de objetos para representar una fila de datos
+            Object[] datos = { getUsername()};
+            modelo.addRow(datos);
+        }
+        TablaUsuarios.setModel(modelo);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    } finally {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Error: "+e);
             }
         }
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar la conexion: "+e);
+            }
+        }
+    }
     };
     
     public void createUser(JTextField paramUsername,JTextField paramPassword){
@@ -200,7 +226,7 @@ public class Usuarios {
              cs.setString(2,getPassword());
              cs.execute();
              JOptionPane.showMessageDialog(null, "has been inserted sucessfully ");
-             EntradaForm obj=new EntradaForm();
+             EntradaForm obj=new EntradaForm(getUsername());
              obj.setVisible(true);
              
         }catch(Exception e){
@@ -268,7 +294,7 @@ public class Usuarios {
             }
         }
     }
-   public void Login(JTextField Username, JTextField Password) {
+   public void Login(JTextField Username, JTextField Password,Signin signin) {
     Connection connection = null;
     setUsername(Username.getText());
     setPassword(Password.getText());
@@ -282,8 +308,9 @@ public class Usuarios {
 
             try (ResultSet rs = cs.executeQuery()) {
                 if (rs.next() && rs.getBoolean(1)) {
-                    EntradaForm entradaForm = new EntradaForm();
+                    EntradaForm entradaForm = new EntradaForm(getUsername());
                     entradaForm.setVisible(true);
+                    signin.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Acceso denegado");
                 }

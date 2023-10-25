@@ -33,6 +33,9 @@ public class ProductoTable extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
+        ID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -65,6 +68,15 @@ public class ProductoTable extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbProductos);
+
+        btnDelete.setText("Eliminar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        ID.setText("ID:");
 
         jMenu2.setText("Inicio");
         jMenuBar1.add(jMenu2);
@@ -121,21 +133,31 @@ public class ProductoTable extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
-            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                    .addGap(34, 34, 34)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                    .addGap(34, 34, 34)))
+            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(ID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(155, 155, 155))))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
-            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(33, Short.MAX_VALUE)))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ID)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelete)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,7 +172,8 @@ public class ProductoTable extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jInternalFrame1))
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,8 +205,14 @@ public class ProductoTable extends javax.swing.JFrame {
 
     private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
         Productos obj=new Productos();
-        obj.mostrarProductos(tbProductos);
+        obj.SeleccionarProducto(tbProductos, txtID);
     }//GEN-LAST:event_tbProductosMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Productos obj=new Productos();
+        obj.deleteProducto(txtID);
+        obj.mostrarProductos(tbProductos);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,9 +250,11 @@ public class ProductoTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ID;
     private javax.swing.JMenuItem MenuEliminar;
     private javax.swing.JMenuItem MenuInsertar;
     private javax.swing.JMenuItem MenuMostrar;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -234,5 +265,6 @@ public class ProductoTable extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbProductos;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Factura {
+    public void createTable(){
+        
+    };
     public static void generarFactura() {
         try {
             // Crear un nuevo documento PDF

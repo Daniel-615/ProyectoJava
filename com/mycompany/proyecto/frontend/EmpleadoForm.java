@@ -4,21 +4,17 @@
  */
 package com.mycompany.proyecto.frontend;
 
-import com.mycompany.proyecto.backend.Usuarios;
-
 /**
  *
  * @author suyan
  */
-public class ShowUser extends javax.swing.JFrame {
+public class EmpleadoForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ShowUser
+     * Creates new form EmpleadoForm
      */
-    public ShowUser() {
+    public EmpleadoForm() {
         initComponents();
-        Usuarios obj=new Usuarios();
-        obj.showUser(tblistauser);
     }
 
     /**
@@ -31,9 +27,8 @@ public class ShowUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblistauser = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -48,47 +43,11 @@ public class ShowUser extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
+        jInternalFrame1.getContentPane().setLayout(new java.awt.CardLayout());
 
-        tblistauser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        jScrollPane1.setViewportView(jTable1);
 
-            }
-        ));
-        tblistauser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblistauserMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblistauser);
-
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                    .addGap(31, 31, 31)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                    .addGap(31, 31, 31)))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE)))
-        );
+        jInternalFrame1.getContentPane().add(jScrollPane1, "card2");
 
         jMenu2.setText("Inicio");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,17 +110,6 @@ public class ShowUser extends javax.swing.JFrame {
 
         jInternalFrame1.setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,14 +121,21 @@ public class ShowUser extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jInternalFrame1)
-                .addContainerGap())
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        EntradaForm obj=new EntradaForm();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ProductoTable p=new ProductoTable();
@@ -206,20 +161,6 @@ public class ShowUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_MenuMostrarActionPerformed
 
-    private void tblistauserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblistauserMouseClicked
-        
-    }//GEN-LAST:event_tblistauserMouseClicked
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        EntradaForm obj=new EntradaForm();
-        obj.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -237,20 +178,20 @@ public class ShowUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowUser().setVisible(true);
+                new EmpleadoForm().setVisible(true);
             }
         });
     }
@@ -259,7 +200,6 @@ public class ShowUser extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuEliminar;
     private javax.swing.JMenuItem MenuInsertar;
     private javax.swing.JMenuItem MenuMostrar;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -269,6 +209,6 @@ public class ShowUser extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblistauser;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

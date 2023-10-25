@@ -5,15 +5,25 @@
 package com.mycompany.proyecto.backend;
 
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author suyan
  */
 public class Clientes {
-   
+    int codigo;
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     public void createTable() {
         try {
             DBConnection objetoConexion = new DBConnection();
@@ -37,4 +47,37 @@ public class Clientes {
                 JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
             }
     }
+    public void DeleteClientes(JTextField paramCodigo) {
+        setCodigo(Integer.parseInt(paramCodigo.getText()));
+       
+        DBConnection objetoConexion= new DBConnection();
+        String delete="""
+                      CREATE OR REPLACE PROCEDURE DELETE_CLIENTE(
+                      \tIN ID INT
+                      )
+                       LANGUAGE plpgsql
+                       AS $$
+                       BEGIN 
+                       \tDELETE FROM CLIENTE
+                      \tWHERE CODIGO=ID;
+                       END;
+                       $$;""";
+        try{
+            CallableStatement cs=objetoConexion.establecerConexion().prepareCall(delete);
+            cs.execute();
+            System.out.println("Se ha crado el procedimiento correctamente");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        String call="CALL DELETE_CLIENTE(?);";
+        try{
+            CallableStatement cs=objetoConexion.establecerConexion().prepareCall(call);
+            cs.setInt(1,getCodigo());
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Se ha llamado el procedimiento correctamente");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
 }
+

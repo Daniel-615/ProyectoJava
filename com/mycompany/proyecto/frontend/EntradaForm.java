@@ -15,6 +15,10 @@ public class EntradaForm extends javax.swing.JFrame {
     public EntradaForm() {
         initComponents();
     }
+    public EntradaForm(String username){
+        initComponents();
+        
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

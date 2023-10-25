@@ -57,6 +57,16 @@ public class UsuariosDelete extends javax.swing.JFrame {
         });
 
         jMenu2.setText("Inicio");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Empleados");
@@ -154,6 +164,16 @@ public class UsuariosDelete extends javax.swing.JFrame {
         Usuarios obj=new Usuarios();
         obj.deleteUser(txtUsuario);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        EntradaForm obj=new EntradaForm();
+        obj.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ProductoTable p=new ProductoTable();

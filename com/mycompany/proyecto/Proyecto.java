@@ -29,14 +29,22 @@ public class Proyecto {
         objp.createTable();
         
         //Procedures
-        Usuarios objP=new Usuarios();
-        objP.createProcedure();
-        objP.updatePassword();
-        objP.procedure_deleteUser();
-        objP.createProcedureLogin();
-        objP.createProcedureShow();
-        Productos obP=new Productos();
-        obP.createProcedureProducto();
+        
+        //Usuarios
+        objU.createProcedure();
+        objU.updatePassword();
+        objU.procedure_deleteUser();
+        objU.createProcedureLogin();
+        objU.createProcedureShow();
+        
+        //Producto
+        objp.createProcedureProducto();
+        objp.actualizarProcedure();
+        objp.deleteProdProcedure();
+        
+        //Empleados
+        objE.createProcedureEmpleados();
+        
         //Forms
         Signin obj=new Signin();
         obj.setVisible(true);  
