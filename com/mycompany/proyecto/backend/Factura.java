@@ -8,9 +8,38 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Factura {
     public void createTable(){
+        try {
+            DBConnection objetoConexion = new DBConnection();
+            String createTableSQL = """
+                                    CREATE TABLE IF NOT EXISTS Factura (
+                                        id_factura serial PRIMARY KEY,
+                                        no_fact INTEGER,
+                                        serie VARCHAR(20),
+                                        id_cliente INTEGER UNIQUE,
+                                        id_empleado INTEGER UNIQUE,
+                                        FECHA_FAC DATE,
+                                        FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+                                        FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
+                                    );""";
+            CallableStatement cs=objetoConexion.establecerConexion().prepareCall(createTableSQL);
+            cs.execute();
+            System.out.println("Tabla creada correctamente");
+           } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error de conexión: " + e.getMessage());
+            }
+    };
+    public void createFactura(JTextField Empleado,JTextField Cliente){
+        
+    };
+    
+    public void createFacturaDetalle(){
         
     };
     public static void generarFactura() {

@@ -4,9 +4,6 @@
  */
 package com.mycompany.proyecto.frontend;
 
-import com.mycompany.proyecto.backend.Factura;
-import com.mycompany.proyecto.frontend.SignUp;
-import com.mycompany.proyecto.frontend.ForgetPassword;
 import com.mycompany.proyecto.backend.Usuarios;
 
 /**

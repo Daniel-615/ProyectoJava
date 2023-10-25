@@ -9,6 +9,7 @@ import com.mycompany.proyecto.backend.Usuarios;
 import com.mycompany.proyecto.backend.Productos;
 import com.mycompany.proyecto.backend.Empleados;
 import com.mycompany.proyecto.backend.Clientes;
+import com.mycompany.proyecto.backend.Factura;
 import com.mycompany.proyecto.frontend.Signin;
 
 /**
@@ -27,7 +28,8 @@ public class Proyecto {
         objE.createTable();
         Productos objp=new Productos();
         objp.createTable();
-        
+        Factura objF=new Factura();
+        objF.createTable();
         //Procedures
         
         //Usuarios
@@ -44,6 +46,7 @@ public class Proyecto {
         
         //Empleados
         objE.createProcedureEmpleados();
+        objE.createProcedureDelete();
         
         //Forms
         Signin obj=new Signin();

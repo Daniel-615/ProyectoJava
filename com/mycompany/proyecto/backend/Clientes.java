@@ -5,7 +5,6 @@
 package com.mycompany.proyecto.backend;
 
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;

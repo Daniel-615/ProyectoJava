@@ -428,7 +428,8 @@ public class EmpleadoView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNitActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        
+        Empleados obj=new Empleados();
+        obj.updateEmpleado(txtSalario,txtID);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -472,7 +473,8 @@ public class EmpleadoView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
+        Empleados obj=new Empleados();
+        obj.deleteEmpleado(txtID);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
